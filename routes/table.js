@@ -3,16 +3,34 @@ const tableRoute=express.Router()
 const fetch=require('../middlewares/Auth')
 const User = require('../models/User')
 const Seat = require('../models/Seat')
+const sendEmail = require('../email')
 
 tableRoute.put('/bookTable',fetch,async (req,res)=>{
+  try {
     const {SeatNum}=req.body
+    const user=await User.findById(req.user)
     const tables=await Seat.find({status:'available',seats:SeatNum})
-    if(tables.length===0){return res.json({error:`no tables with ${SeatNum}`})}
+    if(tables.length===0){return res.json({sucess:false,error:`no tables with ${SeatNum}`})}
     const book=tables[0]
     book.bookedBy=req.user,
     book.status='reserved'
     await book.save()
-    return res.json(book)
+    const detail={
+      name:user.name,
+      recipent:user.email,
+      table:book.tableNumber,
+      id:book._id,
+      Webmail:"http://localhost:5173/"
+
+
+    }
+   res.json(book)
+   sendEmail(detail)
+    
+  } catch (error) {
+    return  res.json({sucess:false,error:"Some Internal error occured"})
+  }
+    
 })
 
 
@@ -28,7 +46,7 @@ tableRoute.post('/add',fetch,async (req,res)=>{
     await newProduct.save()
     res.json(newProduct)
    } catch (error) {
-    res.json(error)
+    res.json({sucess:false,error:"Some Internal error occured"})
    }
 })
 
