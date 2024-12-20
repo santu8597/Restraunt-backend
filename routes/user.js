@@ -46,12 +46,12 @@ userRoute.post('/signup',async (req,res)=>{
             email: email,
             password: pass,
         })
-    const token = generateToken(user._id)
-    sucess=true;
-    res.json({ sucess:sucess,token:token });
+        const token = generateToken(user._id)
+        sucess=true;
+        res.json({ sucess:sucess,token:token });
     } catch (error) {
-    sucess=false;
-    res.json({sucess:sucess,error:"Some Internal error occured"})
+        sucess=false;
+        res.json({sucess:sucess,error:"Some Internal error occured"})
     }
 }) 
  

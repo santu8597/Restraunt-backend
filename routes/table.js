@@ -20,12 +20,11 @@ tableRoute.put('/bookTable',fetch,async (req,res)=>{
       recipent:user.email,
       table:book.tableNumber,
       id:book._id,
-      Webmail:"http://localhost:5173/"
-
-
-    }
+      Webmail:"http://localhost:5173"
+}
    res.json(book)
    sendEmail(detail)
+   return
     
   } catch (error) {
     return  res.json({sucess:false,error:"Some Internal error occured"})
@@ -39,7 +38,7 @@ tableRoute.post('/add',fetch,async (req,res)=>{
     const {SeatNum,tableNumber,status}=req.body
     const newProduct=new Seat({
     tableNumber:tableNumber,
-      seats: SeatNum,
+    seats: SeatNum,
     status:status,
     bookedBy:req.user
     })

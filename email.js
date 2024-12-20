@@ -54,7 +54,8 @@ const transporter = nodemailer.createTransport({
             padding-bottom: 20px;
         }
         .header img {
-            width: 100px;
+            width: 90px;
+            border-radius:50%;
         }
         .content {
             color: #333;
@@ -83,9 +84,7 @@ const transporter = nodemailer.createTransport({
             font-weight: bold;
             margin-top: 20px;
         }
-        img{
-            border-radius:50%
-        }
+        
     </style>
 </head>
 <body>
