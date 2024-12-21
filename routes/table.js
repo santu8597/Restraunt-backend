@@ -5,9 +5,19 @@ const User = require('../models/User')
 const Seat = require('../models/Seat')
 const sendEmail = require('../email')
 
+const generateOTP=()=> {
+  const created=new Date()
+  const exp=new Date() + 5 * 60 * 1000
+  return {otp:Math.floor(100000 + Math.random() * 900000),
+    created:created,
+    exp:exp
+  }
+}
 tableRoute.put('/bookTable',fetch,async (req,res)=>{
   try {
     const {SeatNum}=req.body
+    
+    
     const user=await User.findById(req.user)
     const tables=await Seat.find({status:'available',seats:SeatNum})
     if(tables.length===0){return res.json({sucess:false,error:`no tables with ${SeatNum}`})}
@@ -52,7 +62,10 @@ tableRoute.post('/add',fetch,async (req,res)=>{
 tableRoute.get('/allTables',fetch,async(req,res)=>{
   try {
     const seats=await Seat.find({})
+    
   res.json(seats)
+  
+    console.log(generateOTP())
   } catch (error) {
     res.json(error)
   }
