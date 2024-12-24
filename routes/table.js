@@ -13,7 +13,7 @@ const generateOTP=()=> {
     exp:exp
   }
 }
-tableRoute.put('/bookTable',fetch,async (req,res)=>{
+tableRoute.put('/bookTable',async (req,res)=>{
   try {
 
 
@@ -32,7 +32,7 @@ tableRoute.put('/bookTable',fetch,async (req,res)=>{
       id:book._id,
       Webmail:"http://localhost:5173"
 }
-   res.json(book)
+   res.json({sucess:true,book})
    sendEmail(detail)
    return
     
