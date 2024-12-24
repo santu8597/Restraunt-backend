@@ -7,17 +7,17 @@ const sendEmail = require('../email')
 
 tableRoute.put('/bookTable',fetch,async (req,res)=>{
   try {
-    const {SeatNum}=req.body
-    const user=await User.findById(req.user)
+    const {SeatNum,email,mobile,name}=req.body
+    // const user=await User.findById(req.user)
     const tables=await Seat.find({status:'available',seats:SeatNum})
     if(tables.length===0){return res.json({sucess:false,error:`no tables with ${SeatNum}`})}
     const book=tables[0]
-    book.bookedBy=req.user,
+    book.bookedBy=email,
     book.status='reserved'
     await book.save()
     const detail={
-      name:user.name,
-      recipent:user.email,
+      name:name,
+      recipent:email,
       table:book.tableNumber,
       id:book._id,
       Webmail:"http://localhost:5173"
