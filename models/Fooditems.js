@@ -1,5 +1,4 @@
 const mongoose=require('mongoose')
-
 const FooditemSchema=new mongoose.Schema(
     {
         name:{type:String,required:true},

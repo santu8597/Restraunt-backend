@@ -75,7 +75,7 @@ tableRoute.put('/freeTable/:id',fetch,async(req,res)=>{
   try {
     const seat=await Seat.findById(req.params.id)
     seat.status='available'
-    seat.bookedBy=req.user
+    seat.bookedBy="admin"
     const newSeat=await seat.save()
     res.json(newSeat)
   } catch (error) {

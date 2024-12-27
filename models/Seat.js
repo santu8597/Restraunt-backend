@@ -1,4 +1,5 @@
 const mongoose=require("mongoose")
+
 const seatSchema=mongoose.Schema({
   tableNumber:{type:Number,required:true,unique:true},
   seats: {type:Number,required:true},
