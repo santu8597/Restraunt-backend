@@ -61,3 +61,8 @@ This document provides an overview of the API endpoints for managing restaurant 
 - **URL:** `http://localhost:5000/api/users/profile`
 - **Headers:**
   - `auth-token`: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NjJkYjFmNzU3N2IyMTM4YzU1MTVlNSIsImlhdCI6MTczNDUzMjgyNSwiZXhwIjoxNzM3MTI0ODI1fQ.ndrYYeZ2NbbnzYcja0bWgt2cV19I-7cbzK7pUntmuqw`
+
+### env
+**PORT:** `5000`
+**MONGO_URL** `mongodb+srv://santup205:pvCjKk7jZEyxnEGp@restraunt.eqk7p.mongodb.net/?retryWrites=true&w=majority&appName=Restraunt`
+**JWT_SECRET** `32381ef8bdd278888fa8ff56fb700d5214d392d2caa4488839c9fdd9ede21d37`
